@@ -1,0 +1,18 @@
+[project]
+name = "aurora-assistant"
+version = "0.1.0"
+description = "Assistente do Residencial Aurora — Google ADK + FastAPI"
+authors = [
+    { name = "Kelvin Gluszszak Lopes", email = "kelvin_gl@hotmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk==2.2.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "python-dotenv>=1.0",
+    "google-genai>=1.0",
+]
+
+[tool.uv]
+package = false
