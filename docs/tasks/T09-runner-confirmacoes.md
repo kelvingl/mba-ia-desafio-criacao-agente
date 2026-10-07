@@ -4,13 +4,13 @@
 
 ## Objetivo
 
-Montar `app/adk_runtime.py`: o `Runner`/`App` com `DatabaseSessionService` (SQLite), e as duas
+Montar `app/adk_runtime.py`: o `Runner`/`App` com `SqliteSessionService` (SQLite), e as duas
 funções que a API vai chamar — enviar mensagem e responder confirmação — incluindo a integração
 com a tabela `confirmacoes` de `aurora_condo.db` (ver ADR-02).
 
 ## Passos
 
-1. Configurar `DatabaseSessionService` apontando pra `data/aurora_sessions.db`, com a
+1. Configurar `SqliteSessionService` apontando pra `data/aurora_sessions.db`, com a
    configuração de `App`/Runner que `T04` validou (resume, bloqueios de transferência, etc.).
 2. `criar_sessao(apartamento: str) -> str`: cria sessão ADK, grava
    `session.state["apartamento"] = apartamento` na criação, devolve `session_id`.
@@ -32,7 +32,7 @@ com a tabela `confirmacoes` de `aurora_condo.db` (ver ADR-02).
      mesmo formato com `resposta` descrevendo que a ação foi cancelada (texto livre) e
      `confirmacoes_pendentes` recalculado.
 5. `listar_eventos(session_id: str) -> list[dict] | None`: lê os eventos da sessão via
-   `DatabaseSessionService`; `None` se a sessão não existir (API traduz pra `404`).
+   `SqliteSessionService`; `None` se a sessão não existir (API traduz pra `404`).
 
 ## Entregáveis
 

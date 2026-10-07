@@ -11,7 +11,7 @@
                          ┌──────────▼───────────────┐
                          │  adk_runtime.py            │
                          │  Runner + App              │
-                         │  DatabaseSessionService     │──▶ data/aurora_sessions.db
+                         │  SqliteSessionService     │──▶ data/aurora_sessions.db
                          │  resumo de confirmação       │
                          └──────────┬───────────────┘
                                     │
@@ -91,7 +91,7 @@
 | `POST /sessoes` | `app/main.py` → cria sessão ADK, grava `apartamento` no state |
 | `POST /sessoes/{id}/mensagens` | `app/main.py` → `adk_runtime.enviar_mensagem` |
 | `POST /sessoes/{id}/confirmacoes` | `app/main.py` → `adk_runtime.responder_confirmacao` |
-| `GET /sessoes/{id}/eventos` | `app/main.py` → lê eventos via `DatabaseSessionService` |
+| `GET /sessoes/{id}/eventos` | `app/main.py` → lê eventos via `SqliteSessionService` |
 | `GET /apartamentos/{n}/reservas` | `app/main.py` → `db/condo_repo.listar_reservas(apartamento)` |
 | `GET /apartamentos/{n}/visitantes` | `app/main.py` → `db/condo_repo.listar_visitantes(apartamento)` |
 

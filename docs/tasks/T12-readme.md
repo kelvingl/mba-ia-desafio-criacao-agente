@@ -23,7 +23,7 @@ existem antes de publicar):
   (`responder_confirmacao` atômico) + schema `confirmacoes` (`T02`).
 - Garantia 2 (sessão↔apartamento): `T09.criar_sessao` (grava `state["apartamento"]`) + ausência de
   parâmetro `apartamento` nas tools (`T05`/`T06`).
-- Garantia 3 (persistência): `DatabaseSessionService` em `T09` + `aurora_condo.db` em `T02`.
+- Garantia 3 (persistência): `SqliteSessionService` em `T09` + `aurora_condo.db` em `T02`.
 - Garantia 4 (regulamento consultado): `T03`/`T07` (busca por chunk) + ausência do regulamento nas
   instruções do root agent (`T08`).
 - Garantia 5 (exclusividade): índice único parcial + `BEGIN IMMEDIATE` em `condo_repo.criar_reserva`
