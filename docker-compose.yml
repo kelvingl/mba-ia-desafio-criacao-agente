@@ -1,0 +1,19 @@
+# Ambiente de execução/teste em container — não faz parte do contrato do
+# desafio (que não exige serviço externo), existe só para dar ao
+# scripts/teste_robusto.sh um ambiente isolado e reproduzível. Uso normal de
+# desenvolvimento continua sendo `uv run uvicorn app.main:app --port 8000`
+# (ver README.md, seção "Como rodar").
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # Estado mutável (aurora_condo.db, aurora_sessions.db, cache do
+      # índice do regulamento) persiste no host entre `restart`/`up` —
+      # é o que permite ao teste de restart (Garantia 3) ser um restart de
+      # processo de verdade, sem perder dado.
+      - ./data:/app/data
+    restart: "no"
